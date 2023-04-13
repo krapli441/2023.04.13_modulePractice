@@ -3,7 +3,7 @@ import fs from "fs";
 
 const server = http.createServer(function (request, response) {
   if (request.method === "GET") {
-    const firstPage = fs.readFileSync("./public/index.html");
+    const firstPage = fs.readFileSync("../public/index.html");
     response.writeHead(200, { "Content-Type": "text/html" });
     response.end(firstPage);
   }
