@@ -11,6 +11,8 @@ const server = http.createServer(function (request, response) {
     const firstPage = fs.readFileSync("../public/index.html");
     response.writeHead(200, { "Content-Type": "text/html" });
     response.end(firstPage);
+    const functionList = fs.readdirSync("../utility/");
+    console.log(functionList);
   }
 });
 
