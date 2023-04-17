@@ -6,13 +6,21 @@ import divide from "../utility/divide.js";
 import multiply from "../utility/multiply.js";
 import subtract from "../utility/subtract.js";
 
+const functionList = fs.readdirSync("../utility/");
+console.log(functionList.length);
+
 const server = http.createServer(function (request, response) {
   if (request.method === "GET") {
     const firstPage = fs.readFileSync("../public/index.html");
     response.writeHead(200, { "Content-Type": "text/html" });
-    response.end(firstPage);
-    const functionList = fs.readdirSync("../utility/");
-    console.log(functionList);
+    response.write(firstPage);
+    for (let i = 0; i < functionList.length; i++) {
+      const functionName = functionList[i];
+      fs.readFileSync(`../utility/${functionName}`);
+      response.setHeader("content-type", "text/javascript");
+      response.write(functionName);
+    }
+    response.end();
   }
 });
 
