@@ -17,8 +17,7 @@ const server = http.createServer(function (request, response) {
     for (let i = 0; i < functionList.length; i++) {
       const functionName = functionList[i];
       fs.readFileSync(`../utility/${functionName}`);
-      response.setHeader("content-type", "text/javascript");
-      response.write(functionName);
+      response.write(functionList[i]);
     }
     response.end();
   }
